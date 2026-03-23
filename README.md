@@ -1,116 +1,119 @@
-# 🏙️ UrbanIQ — Civic Intelligence Platform
+<h1 align="center">UrbanIQ – Civic Intelligence Platform</h1>
 
-![Demo](images/First look.jpeg)
-A social civic app where citizens can report local problems, and government officials can review, respond, and track resolution progress — all backed by Supabase.
-
----
-
-## 🚀 Quick Start
-
-### 1. Install dependencies
-```bash
-npm install
-```
-
-### 2. Set up Supabase
-Your credentials are already pre-filled in `.env`. If you need to change them:
-```
-VITE_SUPABASE_URL=https://lpyvlbwkmjcgemrvzlzm.supabase.co
-VITE_SUPABASE_ANON_KEY=your_anon_key
-```
-
-### 3. Run the SQL schema in Supabase SQL Editor
-```sql
-create table users (
-  id text primary key, name text, aadhar text unique,
-  username text unique, password text, phone text, address text
-);
-create table posts (
-  id text primary key, user_id text, username text, name text,
-  description text, sector text, image text, location text,
-  location_name text, timestamp bigint, status text default 'Pending',
-  upvotes text[] default '{}', complaint boolean default false
-);
-create table gov_responses (
-  id text primary key, post_id text references posts(id) on delete cascade,
-  message text, budget text, company text, expected_days int,
-  progress int default 0, start_date bigint, updated_at timestamptz
-);
-create table comments (
-  id text primary key, post_id text references posts(id) on delete cascade,
-  user_id text, username text, text text, ts bigint
-);
-
--- RLS (open policies — lock down in production)
-alter table users enable row level security;
-alter table posts enable row level security;
-alter table gov_responses enable row level security;
-alter table comments enable row level security;
-create policy "all" on users for all using (true) with check (true);
-create policy "all" on posts for all using (true) with check (true);
-create policy "all" on gov_responses for all using (true) with check (true);
-create policy "all" on comments for all using (true) with check (true);
-```
-
-### 4. Start dev server
-```bash
-npm run dev
-```
-
-### 5. Build for production
-```bash
-npm run build
-```
+<p align="center">
+A web-based platform enabling citizens and government authorities to collaborate for efficient urban issue resolution through transparency, real-time updates, and community engagement.
+</p>
 
 ---
 
-## 👤 Login Credentials
+<h2 align="center">About</h2>
 
-| Role | Username | Password |
-|------|----------|----------|
-| Government Admin | `gov_admin` | `urban2025` |
-| Demo Citizen | Register yourself via the app | — |
+<p align="center">
+UrbanIQ is a civic intelligence platform designed to bridge the gap between citizens and government authorities by enabling transparent, efficient, and real-time communication regarding urban issues. The application allows citizens to report problems such as potholes, sanitation concerns, and infrastructure gaps, while providing government bodies with a centralized system to manage, track, and resolve these issues effectively.
+</p>
 
----
+<p align="center">
+Built as a web-based solution, UrbanIQ focuses on community-driven reporting, data transparency, and accountability. Every reported issue is visible, trackable, and updated in real time, transforming traditional complaint systems into a more interactive and responsive ecosystem.
+</p>
 
-## 📁 Project Structure
-
-```
-urbaniq/
-├── index.html
-├── vite.config.js
-├── package.json
-├── .env                          ← Supabase credentials
-└── src/
-    ├── main.jsx                  ← React entry
-    ├── App.jsx                   ← Router + state
-    ├── index.css                 ← Global styles
-    ├── lib/
-    │   ├── supabase.js           ← Supabase client
-    │   ├── db.js                 ← All DB helpers
-    │   └── constants.js          ← Sectors, colors, gov creds
-    └── components/
-        ├── Splash.jsx
-        ├── Toast.jsx
-        ├── Login.jsx
-        ├── Register.jsx
-        ├── UserLayout.jsx
-        ├── GovLayout.jsx
-        ├── PostCard.jsx
-        ├── PostDetail.jsx
-        ├── Home.jsx
-        ├── Feed.jsx
-        ├── ReportPost.jsx
-        ├── Accomplishments.jsx
-        ├── Profile.jsx
-        └── GovDashboard.jsx
-```
+<p align="center">
+The system consists of a Citizen Interface for reporting and tracking issues and a Government Dashboard for monitoring, decision making, and resolution tracking.
+</p>
 
 ---
 
-## ✨ Features
+<h2 align="center">Tech Stack</h2>
 
-- **Citizen side**: Sign up with Aadhaar, report civic issues with photo + auto GPS, upvote posts, comment, raise complaints
-- **Government side**: Dashboard with stats, review complaints, set status, allocate budget, assign company, update progress bar
-- **Community Feed**: Filter by status & sector, view gov responses with progress tracking
-- **Achievements page**: Resolved issues, in-progress work, sector breakdown
+<p align="center">
+HTML | CSS | JavaScript | Vite
+</p>
+
+---
+
+<h2 align="center">Features</h2>
+
+<h3 align="center">Citizen Interface</h3>
+
+<p align="center">
+<img src="Images/Users-POV.jpeg" width="700"/>
+<br/>User POV interface for reporting civic issues
+<br/><br/>
+
+<img src="Images/The-image-uploaded-user.jpeg" width="700"/>
+<br/>Image upload system with location based reporting
+<br/><br/>
+
+<img src="Images/Potholes-complaint.jpeg" width="700"/>
+<br/>Pothole complaint submission and tracking
+</p>
+
+<p align="center">
+Secure Aadhaar based signup, issue reporting with images and GPS, community interaction through comments and upvotes, and real time complaint tracking.
+</p>
+
+---
+
+<h3 align="center">Government Dashboard</h3>
+
+<p align="center">
+<img src="Images/-dashboard.jpeg" width="700"/>
+<br/>Administrative dashboard showing issue statistics
+<br/><br/>
+
+<img src="Images/Reply-gov-decision.jpeg" width="700"/>
+<br/>Government response and decision update system
+<br/><br/>
+
+<img src="Images/Pending-projects.jpeg" width="700"/>
+<br/>Pending projects and task management view
+</p>
+
+<p align="center">
+Centralized dashboard for reviewing complaints, assigning agencies, allocating budgets, updating progress, and providing official responses.
+</p>
+
+---
+
+<h3 align="center">Community Feed</h3>
+
+<p align="center">
+<img src="Images/Users-sharing-ideas.jpeg" width="700"/>
+<br/>Users sharing ideas and interacting on issues
+<br/><br/>
+
+<img src="Images/Government-pov-on-the-Pot-hole-issue.jpeg" width="700"/>
+<br/>Government perspective on reported issues
+</p>
+
+<p align="center">
+Public feed with filtering options, transparent updates, and community engagement features to increase participation.
+</p>
+
+---
+
+<h3 align="center">Achievements and Progress Tracking</h3>
+
+<p align="center">
+<img src="Images/Completed-Projects.jpeg" width="700"/>
+<br/>Completed projects and progress overview
+</p>
+
+<p align="center">
+Displays completed and ongoing projects with progress tracking to improve accountability and visibility.
+</p>
+
+---
+
+<h2 align="center">Project Highlights</h2>
+
+<p align="center">
+Designed as a real world civic engagement solution with focus on transparency, usability, and efficient governance.
+</p>
+
+---
+
+<h2 align="center">Future Scope</h2>
+
+<p align="center">
+AI based issue prioritization, mobile application support, and advanced analytics for government decision making.
+</p>
