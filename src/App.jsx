@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from 'react'
 import { DB } from './lib/db'
 import Splash        from './components/Splash'
