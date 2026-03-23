@@ -1,5 +1,6 @@
 # 🏙️ UrbanIQ — Civic Intelligence Platform
 
+![Demo](images/First look.jpeg)
 A social civic app where citizens can report local problems, and government officials can review, respond, and track resolution progress — all backed by Supabase.
 
 ---
